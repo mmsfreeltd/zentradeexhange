@@ -6,6 +6,9 @@ import { Particles } from '@/components/ui/shadcn-io/particles';
 import Stats from './ui/stats';
 import { useAccountSummary } from '@/hooks/useAccountSummary';
 import AnimatedPL from './ui/AnimatedPL';
+import Ticker from '@/components/common/trading-widget/Ticker';
+import UserTransactions from '@/components/user/common/user-transactions';
+import CryptoMarket from '@/components/common/trading-widget/CryptoMarket';
 
 export default function TradingDashboard2() {
   const { assets, client, mainBalance, accountType, investmentBalance } =
@@ -15,7 +18,7 @@ export default function TradingDashboard2() {
     return;
   }
   return (
-    <div className="sm:w-2/3 border border-border rounded sm:mx-auto p-4">
+    <div className="sm:w-3/4 border border-border rounded sm:mx-auto p-4">
       <header className="flex justify-center py-4 border-b mb-4">
         <div>
           <p className="flex items-center">
@@ -55,14 +58,17 @@ export default function TradingDashboard2() {
         client={client}
       />
 
+      <div className="my-4">
+        <Ticker />
+      </div>
+
+      <UserTransactions />
+
+      <div className="my-4">
+        <CryptoMarket />
+      </div>
+
       <div className="assets my-4 grid grid-cols-2 gap-4">
-        {/* <AssetBox
-          Icon={Wallet}
-          amount={`${client.currency} ${mainBalance ?? '-'}`}
-          title="Active Deposit"
-          subTitle="Total Deposit made"
-          colorClass="text-blue-500"
-        /> */}
         {assets &&
           assets.map((asset) => (
             <AssetBox

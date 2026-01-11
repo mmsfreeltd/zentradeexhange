@@ -1,3 +1,4 @@
+// import NewTradingDashboard from '@/components/user/dashboard-1/NewTradingDashboard';
 import ErrorBoundary from '@/components/user/ErrorBoundary';
 import TradingDashboard2 from '@/components/user/dashboard-2/TradingDashboard2';
 // import TradingDashboard3 from '@/components/user/dashboard-3/TradingDashboard3';
@@ -11,8 +12,8 @@ export default async function UserHome() {
     <>
       <ErrorBoundary>
         {/* <NewTradingDashboard /> */}
-        {/* <TradingDashboard3 /> */}
         <TradingDashboard2 />
+        {/* <TradingDashboard3 /> */}
       </ErrorBoundary>
     </>
   );
