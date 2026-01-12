@@ -1,4 +1,4 @@
-import { SITE_URL_WITH_HTTPS, SITE_NAME } from "@/global/constants";
+import { SITE_URL_WITH_HTTPS, SITE_NAME } from '@/global/constants';
 
 export function emailVerificationTemplate(url: string): string {
   const verify = `
@@ -73,7 +73,7 @@ export function emailTransactionTemplate(
 }
 
 export function emailWithdrawalTransactionTemplate(
-  user: { f_name: string; l_name: string },
+  user: { f_name: string; l_name: string; email: string; currency: string },
   tx: {
     amount: string;
     coin_amount: number;
@@ -87,17 +87,22 @@ export function emailWithdrawalTransactionTemplate(
     <div style="font-family: sans-serif; line-height:1.6; color:#333">
       <h2>Withdrawal Initiated Successfully </h2>
       <p>Hi ${user.f_name},</p>
-      <p>Your withdrawal request  of <strong>${
-        tx.amount
-      }</strong> has been received on <strong>${tx.date.toLocaleString()}</strong>.</p>
+      <p>Your withdrawal request  of <strong> ${user.currency}  ${
+    tx.amount
+  }</strong> has been received on <strong>${tx.date.toLocaleString()}</strong>.</p>
       <p>Your Withdrawal request is being processed, you will be notified when the status of this withdrawal is updated</p>
-      <p>That amount equals <strong>${tx.amount} ${tx.coin_name}</strong>.</p>
+      <p>Amount: <strong>  ${user.currency} ${tx.amount}</strong>.</p>
       <p>Transaction Reference: <code>${tx.ref}</code></p>
-      
-      <div style="margin-top:1rem;">
-        <img src="${tx.coin_logo}" alt="${
+      <div> <div style="display:flex">
+        <span style='margin-right:10px'>Asset: </span>
+        <span>${tx.coin_name} </span>
+        <div>
+                  <img src="${tx.coin_logo}" alt="${
     tx.coin_name
-  }" style="height:32px;width:32px;"/>
+  }" style="height:20px;width:20px;"/>
+        </div>
+      </div>
+      
       </div>
       <p style="margin-top:1rem;">Thank you for using ${SITE_NAME}!</p>
     </div>
